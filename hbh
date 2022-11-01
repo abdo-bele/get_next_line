@@ -1,0 +1,26 @@
+char	*get_next_line(int fd)
+{
+	char		*buffer;
+	static char	*tmp;
+	char		*ab;
+	int			a;
+	size_t		l;
+
+	a = 0;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	tmp = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
+	l = read(fd, buffer, BUFFER_SIZE);
+	while (*tmp != '\0')
+	{
+		*tmp = *buffer;
+		tmp++;
+		buffer++;
+	}
+	ab = ft_cpy(tmp);
+	tmp = ft_strchr(tmp, '\n');
+	return (ab);
+}
