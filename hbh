@@ -24,3 +24,131 @@ char	*get_next_line(int fd)
 	tmp = ft_strchr(tmp, '\n');
 	return (ab);
 }
+int	endline(char *p)
+{
+	int	i;
+
+	i = 0;
+	while (p[i] != '\n')
+		i++;
+	return (i);
+}
+
+char	*ft_get_new_len(char *p)
+{
+	int		i;
+	int		a;
+	char	*str;
+
+	i = endline(p);
+	a = 0;
+	// str = malloc(ft_strlen(p) - i + 1);
+	str = ft_substr(p, 0, i);
+	// i++;
+	// while (p[i])
+	// 	str[a++] = p[i++];
+	// str[a] = '\0';
+	free(p);
+	return (str);
+}
+
+char	*ft_read(int fd, char *ptr, int n)
+{
+	char		*buffer;
+	char		*ab;
+	size_t		i;
+	int			a;
+
+	if (n == 1)
+	{
+		buffer = malloc(BUFFER_SIZE);
+		ptr = malloc(BUFFER_SIZE + 1);
+		i = read(fd, buffer, BUFFER_SIZE);
+		ab = ft_strdup(buffer);
+		while (ab[a])
+		{
+			ptr[a] = ab[a];
+			a++;
+		}
+		ptr[a] = '\0';
+	}
+	return (ptr);
+}
+
+char	*ft_dup(char	*h)
+{
+	int		i;
+	int		a;
+	char	*abdo;
+
+	i = endline(h);
+	a = 0;
+	abdo = malloc(i + 2);
+	while (i >= 0)
+	{
+		abdo[a] = h[a];
+		a++;
+		i--;
+	}
+	abdo[a] = '\n';
+	abdo[a + 1] = '\0';
+	return (abdo);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*ptr = NULL;
+	char		*abdo;
+	char		*tmp;
+	static int	n = 0;
+
+	if (n == 0)
+	{
+		n = 1;
+		ptr = ft_read(fd, ptr, n);
+	}
+	abdo = ft_dup(ptr);
+	ptr = ft_get_new_len(ptr);
+	return (abdo);
+}
+char	*update(char *ptr)
+{
+	int		i;
+	char	*rtn;
+
+	rtn = NULL;
+	i = endline(ptr);
+	if (i != -1)
+	{
+		rtn = ft_strdup(ptr + i + 1);
+		free(ptr);
+		ptr = rtn;
+	}
+	else if (i == -1 && *ptr != '\0')
+		return (NULL);
+	return (rtn);
+}
+char	*sendline(char *ptr)
+{
+	char	*rtn;
+	int		index;
+
+	index = endline(ptr);
+	if (index != -1)
+	{
+		rtn = malloc(sizeof(char) * (index + 2));
+		if (!rtn)
+			return (NULL);
+		ft_memcpy(rtn, ptr, index);
+		rtn[index] = '\n';
+		rtn[index + 1] = '\0';
+	}
+	else if (*ptr != '\0' && index == -1)
+	{
+		rtn = ft_strdup(ptr);
+		free(ptr);
+	}
+	else
+		return (free(ptr), NULL);
+	return (rtn);
+} 
