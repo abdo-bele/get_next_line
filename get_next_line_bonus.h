@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarchtou <aarchtou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 15:18:46 by aarchtou          #+#    #+#             */
-/*   Updated: 2022/11/04 19:16:16 by aarchtou         ###   ########.fr       */
+/*   Created: 2022/11/04 19:19:06 by aarchtou          #+#    #+#             */
+/*   Updated: 2022/11/04 19:22:14 by aarchtou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef     GET_NEXT_LINE_H
+#ifndef		GET_NEXT_LINE_H
 # define    GET_NEXT_LINE_H
 
 # include <fcntl.h>

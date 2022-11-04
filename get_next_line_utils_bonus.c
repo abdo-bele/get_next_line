@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarchtou <aarchtou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 15:22:59 by aarchtou          #+#    #+#             */
-/*   Updated: 2022/11/04 18:16:51 by aarchtou         ###   ########.fr       */
+/*   Created: 2022/11/04 19:19:43 by aarchtou          #+#    #+#             */
+/*   Updated: 2022/11/04 19:25:47 by aarchtou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*ft_get_line(char *abdo)
 		return (NULL);
 	while (abdo[i] && abdo[i] != '\n')
 		i++;
-	str = malloc(i + 2);
+	str = (char *)malloc(sizeof(char) * (i + 2));
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -98,7 +98,7 @@ char	*ft_get_line(char *abdo)
 	return (str);
 }
 
-char	*ft_new_left_str(char *abdo)
+char	*ft_new_abdo(char *abdo)
 {
 	int		i;
 	int		j;
@@ -112,7 +112,7 @@ char	*ft_new_left_str(char *abdo)
 		free(abdo);
 		return (NULL);
 	}
-	str = malloc((ft_strlen(abdo) - i + 1));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(abdo) - i + 1));
 	if (!str)
 		return (NULL);
 	i++;
@@ -120,6 +120,6 @@ char	*ft_new_left_str(char *abdo)
 	while (abdo[i])
 		str[j++] = abdo[i++];
 	str[j] = '\0';
-	free(abdo);
+	free(left_str);
 	return (str);
 }

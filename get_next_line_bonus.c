@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarchtou <aarchtou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 15:20:25 by aarchtou          #+#    #+#             */
-/*   Updated: 2022/11/04 19:13:20 by aarchtou         ###   ########.fr       */
+/*   Created: 2022/11/04 19:19:30 by aarchtou          #+#    #+#             */
+/*   Updated: 2022/11/04 19:30:43 by aarchtou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_read_file(int fd, char	*abdo)
 
 char	*get_next_line(int fd)
 {
-	static char	*abdo;
+	static char	*abdo[10240];
 	char		*ab;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
