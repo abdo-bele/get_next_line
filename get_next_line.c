@@ -6,68 +6,63 @@
 /*   By: aarchtou <aarchtou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:20:25 by aarchtou          #+#    #+#             */
-/*   Updated: 2022/11/04 19:13:20 by aarchtou         ###   ########.fr       */
+/*   Updated: 2022/11/05 14:54:02 by aarchtou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
-// #define BUFFER_SIZE 100
-
-char	*ft_read_file(int fd, char	*abdo)
+char	*ft_read_file(int fd, char *left_str)
 {
-	char		*bufer;
-	int			i;
+	char	*buff;
+	int		n;
 
-	bufer = malloc(BUFFER_SIZE + 1);
-	if (!bufer)
+	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buff)
 		return (NULL);
-	i = 1;
-	while (!ft_strchr(abdo, '\n') && i != 0)
+	n = 1;
+	while (!ft_strchr(left_str, '\n') && n != 0)
 	{
-		i = read(fd, bufer, BUFFER_SIZE);
-		if (i == -1)
+		n = read(fd, buff, BUFFER_SIZE);
+		if (n == -1)
 		{
-			free(bufer);
+			free(buff);
 			return (NULL);
 		}
-		bufer[i] = '\0';
-		abdo = ft_strjoin(abdo, bufer);
+		buff[n] = '\0';
+		left_str = ft_strjoin(left_str, buff);
 	}
-	free(bufer);
-	return (abdo);
+	free(buff);
+	return (left_str);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*abdo;
-	char		*ab;
+	char		*line;
+	static char	*left_str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	left_str = ft_read_file(fd, left_str);
+	if (!left_str)
 		return (NULL);
-	abdo = ft_read_file(fd, abdo);
-	if (!abdo)
-		return (NULL);
-	ab = ft_get_line(abdo);
-	abdo = ft_new_left_str(abdo);
-	return (ab);
+	line = ft_get_line(left_str);
+	left_str = ft_get_next_line(left_str);
+	return (line);
 }
-
 
 // int	main(void)
 // {
-// 	int		fd = open("text.txt", O_RDONLY);
-// 	int i = 6;
-// 	char	*s = get_next_line(fd);
-// 	// get_next_line(fd);
-// 	// get_next_line(fd);
-// 	while (s != NULL && i > 0)
+// 	int		fd;
+// 	char	*s;
+
+// 	fd = open("text.txt", O_RDONLY);
+// 	s = get_next_line(fd);
+// 	while (s != NULL)
 // 	{
 // 		printf("get line = %s\n", s);
 // 		free(s);
 // 		s = get_next_line(fd);
-// 		i--;
 // 	}
 
 // 	return (0);

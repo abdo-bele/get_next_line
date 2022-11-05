@@ -6,7 +6,7 @@
 /*   By: aarchtou <aarchtou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:22:59 by aarchtou          #+#    #+#             */
-/*   Updated: 2022/11/04 18:16:51 by aarchtou         ###   ########.fr       */
+/*   Updated: 2022/11/05 17:44:03 by aarchtou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_strchr(char *s, int c)
 		return (&s[ft_strlen(s)]);
 	while (s[i] != '\0')
 	{
-		if (s[i] == (char) c)
+		if (s[i] == (char)c)
 			return (&s[i]);
 		i++;
 	}
@@ -70,39 +70,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (ptr);
 }
 
-char	*ft_get_line(char *abdo)
+char	*ft_get_next_line(char	*abdo)
 {
+	char	*ab;
 	int		i;
-	char	*str;
-
-	i = 0;
-	if (!abdo[i])
-		return (NULL);
-	while (abdo[i] && abdo[i] != '\n')
-		i++;
-	str = malloc(i + 2);
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (abdo[i] && abdo[i] != '\n')
-	{
-		str[i] = abdo[i];
-		i++;
-	}
-	if (abdo[i] == '\n')
-	{
-		str[i] = abdo[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
-char	*ft_new_left_str(char *abdo)
-{
-	int		i;
-	int		j;
-	char	*str;
+	int		a;
 
 	i = 0;
 	while (abdo[i] && abdo[i] != '\n')
@@ -112,14 +84,40 @@ char	*ft_new_left_str(char *abdo)
 		free(abdo);
 		return (NULL);
 	}
-	str = malloc((ft_strlen(abdo) - i + 1));
-	if (!str)
+	ab = malloc(ft_strlen(abdo) - i + 1);
+	if (!ab)
 		return (NULL);
 	i++;
-	j = 0;
+	a = 0;
 	while (abdo[i])
-		str[j++] = abdo[i++];
-	str[j] = '\0';
+		ab[a++] = abdo[i++];
+	ab[a] = '\0';
 	free(abdo);
-	return (str);
+	return (ab);
+}
+
+char	*ft_get_line(char *abdo)
+{
+	char	*ab;
+	int		i;
+
+	i = 0;
+	if (!abdo[i])
+		return (NULL);
+	while (abdo[i] && abdo[i] != '\n')
+		i++;
+	ab = malloc(i + 2);
+	i = 0;
+	while (abdo[i] && abdo[i] != '\n')
+	{
+		ab[i] = abdo[i];
+		i++;
+	}
+	if (abdo[i] == '\n')
+	{
+		ab[i] = abdo[i];
+		i++;
+	}
+	ab[i] = '\0';
+	return (ab);
 }
