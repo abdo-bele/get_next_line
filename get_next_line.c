@@ -6,7 +6,7 @@
 /*   By: aarchtou <aarchtou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:20:25 by aarchtou          #+#    #+#             */
-/*   Updated: 2022/11/05 14:54:02 by aarchtou         ###   ########.fr       */
+/*   Updated: 2022/11/06 12:00:36 by aarchtou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,18 @@ char	*ft_read_file(int fd, char *left_str)
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*left_str;
+	char		*ab;
+	static char	*abdo;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	left_str = ft_read_file(fd, left_str);
-	if (!left_str)
+	abdo = ft_read_file(fd, abdo);
+	if (!abdo)
 		return (NULL);
-	line = ft_get_line(left_str);
-	left_str = ft_get_next_line(left_str);
-	return (line);
+	ab = ft_get_line(abdo);
+	abdo = ft_get_next_line(abdo);
+
+	return (ab);
 }
 
 // int	main(void)
@@ -60,7 +61,7 @@ char	*get_next_line(int fd)
 // 	s = get_next_line(fd);
 // 	while (s != NULL)
 // 	{
-// 		printf("get line = %s\n", s);
+// 		printf("get ab = %s\n", s);
 // 		free(s);
 // 		s = get_next_line(fd);
 // 	}

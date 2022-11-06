@@ -6,7 +6,7 @@
 /*   By: aarchtou <aarchtou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:22:59 by aarchtou          #+#    #+#             */
-/*   Updated: 2022/11/05 17:44:03 by aarchtou         ###   ########.fr       */
+/*   Updated: 2022/11/06 11:59:08 by aarchtou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1)
 	{
 		s1 = malloc(1);
+		if (!s1)
+			return (NULL);
 		s1[0] = '\0';
 	}
-	if (!s1 || !s2)
-		return (0);
+	if (!s2)
+		return (free(s1), NULL);
 	ptr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (ptr == NULL)
 		return (NULL);
@@ -86,7 +88,7 @@ char	*ft_get_next_line(char	*abdo)
 	}
 	ab = malloc(ft_strlen(abdo) - i + 1);
 	if (!ab)
-		return (NULL);
+		return (free(abdo), NULL);
 	i++;
 	a = 0;
 	while (abdo[i])
