@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarchtou <aarchtou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 15:22:59 by aarchtou          #+#    #+#             */
-/*   Updated: 2022/11/07 22:40:23 by aarchtou         ###   ########.fr       */
+/*   Created: 2022/11/07 22:34:58 by aarchtou          #+#    #+#             */
+/*   Updated: 2022/11/08 14:46:24 by aarchtou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *c)
 {
@@ -70,7 +70,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (ptr);
 }
 
-char	*ft_get_next_line(char	*abdo)
+char	*fft_get_next_line(char	*abdo)
 {
 	char	*ab;
 	int		i;
@@ -96,7 +96,7 @@ char	*ft_get_next_line(char	*abdo)
 	return (ab);
 }
 
-char	*ft_get_line(char *abdo)
+char	*fft_get_line(char *abdo)
 {
 	char	*ab;
 	int		i;

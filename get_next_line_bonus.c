@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarchtou <aarchtou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 15:20:25 by aarchtou          #+#    #+#             */
-/*   Updated: 2022/11/07 22:32:29 by aarchtou         ###   ########.fr       */
+/*   Created: 2022/11/07 22:33:46 by aarchtou          #+#    #+#             */
+/*   Updated: 2022/11/08 14:47:24 by aarchtou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_read_file(int fd, char *abdo)
 {
@@ -39,30 +39,14 @@ char	*ft_read_file(int fd, char *abdo)
 char	*get_next_line(int fd)
 {
 	char		*ab;
-	static char	*abdo;
+	static char	*abdo[1024];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	abdo = ft_read_file(fd, abdo);
-	if (!abdo)
+	abdo[fd] = ft_read_file(fd, abdo[fd]);
+	if (!abdo[fd])
 		return (NULL);
-	ab = ft_get_line(abdo);
-	abdo = ft_get_next_line(abdo);
+	ab = fft_get_line(abdo[fd]);
+	abdo[fd] = fft_get_next_line(abdo[fd]);
 	return (ab);
 }
-
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*s;
-
-// 	fd = open("text.txt", O_RDONLY);
-// 	s = get_next_line(fd);
-// 	while (s != NULL)
-// 	{
-// 		printf("get ab = %s\n", s);
-// 		free(s);
-// 		s = get_next_line(fd);
-// 	}
-// 	return (0);
-// }
